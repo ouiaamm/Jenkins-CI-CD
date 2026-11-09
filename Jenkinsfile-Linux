@@ -16,7 +16,7 @@ pipeline {
                     url: 'https://github.com/ouiaamm/Jenkins-CI-CD.git',
                     credentialsId: 'github-https'
             }
-}
+        }
 
         stage('Setup Virtual Environment') {
             steps {
@@ -61,7 +61,7 @@ pipeline {
                 """
             }
         }
-    }
+    
 
    
     
