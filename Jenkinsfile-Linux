@@ -13,20 +13,28 @@ pipeline {
         stage('Checkout') {
             steps {
                 git branch: 'main',
-                    url: 'https://github.com/USERNAME/REPO.git',
-                    credentialsId: 'github-token'
+                    url: 'https://github.com/ouiaamm/Jenkins-CI-CD.git',
+                    credentialsId: 'github-https'
             }
-        }
+}
 
         stage('Setup Virtual Environment') {
             steps {
-                sh """
-                python3 -m venv ${VENV_DIR}
-                
-                . ${VENV_DIR}/bin/activate
-                pip install --upgrade pip
-                pip install -r requirements.txt
-                """
+                sh '''
+                    echo "Creating Python virtual environment..."
+
+                    python3 -m venv .venv
+
+                    . .venv/bin/activate
+
+                    echo "Python version:"
+                    python --version
+
+                    pip install --upgrade pip
+                    pip install -r requirements.txt
+
+                    echo "Setup completed!"
+                '''
             }
         }
 
